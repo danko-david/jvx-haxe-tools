@@ -1,0 +1,12 @@
+{
+	"name": "jvx-haxe-tools",
+	"url" : "https://github.com/danko-david/jvx-haxe-tools/",
+	"license": "MIT",
+	"tags": ["cross", "jvx"],
+	"description": "Haxe libary from Javaexperience library: RPC",
+	"version": "1.0.0",
+	"classPath": "source/haxe/",
+	"releasenote": "Initial release",
+	"contributors": ["Danko David"],
+	"dependencies": {}
+}
