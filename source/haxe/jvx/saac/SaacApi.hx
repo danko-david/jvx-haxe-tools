@@ -1,9 +1,9 @@
 package jvx.saac;
 
-import jvx.rpc.ApiInterface;
+import jvx.rpc.ApiInstance;
 import jvx.rpc.ApiConnector;
 
-class SaacApi extends jvx.rpc.ApiInterface
+class SaacApi extends ApiInstance
 {
 	public function new(conn:ApiConnector)
 	{
@@ -12,8 +12,7 @@ class SaacApi extends jvx.rpc.ApiInterface
 	
 	public function listFunctions():Array<FunctionDescriptor>
 	{
-		//TODO parse
-		return invokeRpcFunction("listFunctions", new Array());
+		return FunctionDescriptor.parseFunctions(invokeRpcFunction("listFunctions", new Array()));
 	}
 	
 	//TODO maybe offer?
