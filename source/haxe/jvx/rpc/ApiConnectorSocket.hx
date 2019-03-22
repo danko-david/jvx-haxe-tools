@@ -1,5 +1,22 @@
 package jvx.rpc;
 
+#if js
+//maybe nodejs can do this.
+class ApiConnectorSocket implements ApiConnector
+{
+	public function new(host:String, port:Int)
+	{
+		txrx(null);
+	}
+
+	public function txrx(data:Dynamic):Dynamic
+	{
+		throw "ApiConnectorSocket not available in javascript.";
+	}
+}
+
+#else
+
 import haxe.Json;
 import sys.net.Socket;
 import sys.net.Host;
@@ -24,7 +41,7 @@ class ApiConnectorSocket implements ApiConnector
 		{
 			throw ret.e;
 		}
-		
+
 		return ret.r;
 	}
 
@@ -33,3 +50,5 @@ class ApiConnectorSocket implements ApiConnector
 		socket.close();
 	}
 }
+
+#end

@@ -1,4 +1,7 @@
-package jvx.rpc;
+package jvx.api;
+
+import jvx.rpc.ApiConnector;
+import jvx.rpc.ApiInstance;
 
 class DiscoverRpc extends ApiInstance
 {
@@ -6,22 +9,20 @@ class DiscoverRpc extends ApiInstance
 	{
 		super(conn);
 	}
-	
+
 	public function help():String
 	{
 		return invokeRpcFunction("help", []);
 	}
-	
+
 	public function getNamespaces():Array<String>
 	{
 		return invokeRpcFunction("getNamespaces", []);
 	}
-	
+
 	public function source(language:String, namespace:String, options:Map<String, String>  = null):Array<String>
 	{
 		return invokeRpcFunction("getNamespaces", []);
 	}
-	
+
 }
-
-
