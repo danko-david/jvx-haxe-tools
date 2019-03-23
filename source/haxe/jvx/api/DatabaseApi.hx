@@ -12,7 +12,7 @@ class DatabaseApi extends ApiInstance
     super(conn);
   }
 
-	public function select(modelName:String, select:ConditionInterface, options:Dynamic /*limi order etc*/ = null):List<Dynamic>
+	public function select(modelName:String, select:ConditionInterface, options:Dynamic /*limi order etc*/ = null):Array<Dynamic>
   {
     return invokeRpcFunction("select", [modelName, select.serialize(), options]);
   }
@@ -22,7 +22,7 @@ class DatabaseApi extends ApiInstance
     return invokeRpcFunction("getManagedModels", []);
   }
 
-  public function getAllAccessableClass():List<Dynamic>
+  public function getAllAccessableClass():Array<Dynamic>
   {
     return invokeRpcFunction("getAllAccessableClass", []);
   }
