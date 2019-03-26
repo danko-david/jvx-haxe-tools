@@ -5,7 +5,7 @@ class FunctionDescriptor
 	var id:String;
 	var name:String;
 	var description:String;
-	
+
 	public function new(){}
 
 	public static function parseFunctions(descrs:Array<Dynamic>):Array<FunctionDescriptor>
@@ -24,8 +24,22 @@ class FunctionDescriptor
 		ret.id = descr.id;
 		ret.name = descr.name;
 		ret.description = descr.description;
-			
+
 		return ret;
 	}
-}
 
+	public function getId():String
+	{
+		return id;
+	}
+
+	public function getName():String
+	{
+		return name;
+	}
+
+	public function getDescription():String
+	{
+		return description;
+	}
+}

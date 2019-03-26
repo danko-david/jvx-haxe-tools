@@ -88,11 +88,13 @@ class LogicalGroup implements ConditionInterface
 
   	public function serialize():Dynamic
   	{
-  		var ret:Map<String, Dynamic> = new Map();
-  		ret["r"] = lr.getName();
+  		var ret = {};
+			var a = null;
+			var c = null;
+
   		if(null != ac)
   		{
-  			ret["a"] = ac.serialize();
+  			return {r: lr.getName(), a: ac.serialize()};
   		}
   		else
   		{
@@ -101,9 +103,8 @@ class LogicalGroup implements ConditionInterface
   			{
   				lst[i] = components[i].serialize();
   			}
-  			ret["c"] = lst;
-  		}
 
-  		return ret;
+  			return {r: lr.getName(), c: lst};
+  		}
   	}
   }

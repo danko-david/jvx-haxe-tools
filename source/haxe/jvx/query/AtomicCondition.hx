@@ -1,4 +1,5 @@
 package jvx.query;
+import haxe.Json;
 
 
 class AtomicCondition implements ConditionInterface
@@ -53,11 +54,13 @@ class AtomicCondition implements ConditionInterface
 
 	public function serialize():Dynamic
 	{
-		var arr:Map<String, Dynamic> = new Map();
-		arr["o"] = operator.getName();
-		arr["n"] = negate;
-		arr["f"] = field;
-		arr["v"] = value;
+		var arr =
+		{
+			o: operator.getName(),
+			n: negate,
+			f: field,
+			v: value
+		};
 		return arr;
 	}
 }

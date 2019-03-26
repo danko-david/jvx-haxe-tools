@@ -21,6 +21,10 @@ class ApiConnectorHttp implements ApiConnector
       response = data;
     }
 		request.request(true);
+    if(null ==  response)
+    {
+      throw "HttpApi access error at end point: "+url;
+    }
 		//TODO what if connection closed?
 		var ret = Json.parse(response);
 		if(Reflect.hasField(ret, "e"))

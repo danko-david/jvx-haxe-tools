@@ -5,7 +5,7 @@ import haxe.Json;
 class ApiInstance
 {
 	var conn:ApiConnector;
-	
+
 	/**
 	 * Subclasses should have a constructor with this signature,
 	 * in order to the refelction system can create instances automatically.
@@ -23,11 +23,10 @@ class ApiInstance
 		req.p = params;
 		return conn.txrx(req);
 	}
-	
+
 	//PHP wont get this, haxe generates a default one __call method.
-	function __call(method:String, params: Array<Dynamic>)
+	/*function __call(method:String, params: Array<Dynamic>)
 	{
 		return invokeRpcFunction(method, params);
-	}
+	}*/
 }
-
