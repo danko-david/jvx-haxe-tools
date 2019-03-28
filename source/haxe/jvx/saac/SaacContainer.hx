@@ -21,6 +21,17 @@ class SaacContainer
       this.args = args;
   }
 
+  public static function restore(data:Dynamic):SaacContainer
+  {
+    var args = new Array();
+    for(i in 0...data.args.length)
+    {
+      args[i] = restore(data.args[i]);
+    }
+
+    return new SaacContainer(data.id, data.content, args);
+  }
+
   public static function createRaw(content:String)
   {
     return new SaacContainer("", content, []);
@@ -29,7 +40,6 @@ class SaacContainer
   public static function fromDescriptor(descr:FunctionDescriptor)
   {
     return new SaacContainer(descr.getId(), descr.getName(), []);
-
   }
 
   public static function createFunction(func:String)

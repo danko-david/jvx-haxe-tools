@@ -11,6 +11,11 @@ class ApiInstanceFactory
 		this.conn = conn;
 	}
 
+	public function getApiConnector():ApiConnector
+	{
+		return conn;
+	}
+
 	public function getApi<T:ApiInstance>(?ns:String, type:Class<T>):T
 	{
 		var c:ApiConnector = conn;

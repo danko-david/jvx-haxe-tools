@@ -76,7 +76,7 @@ class LogicalGroup implements ConditionInterface
   		}
   		else
   		{
-  			var lrs:Array<LogicalGroup> = new Array();//new LogicalGroup[comp.size()];
+  			var lrs:Array<LogicalGroup> = new Array();
   			for(i in 0...comp.length)
   			{
   				lrs[i] = parse(comp[i]);
