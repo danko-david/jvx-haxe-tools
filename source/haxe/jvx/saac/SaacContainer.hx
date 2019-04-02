@@ -47,6 +47,11 @@ class SaacContainer
     return new SaacContainer(func, func, []);
   }
 
+  public static function createArray()
+  {
+    return new SaacContainer("", "", []);
+  }
+
   public function resetArguments():SaacContainer
   {
     args = [];
@@ -72,7 +77,6 @@ class SaacContainer
     {
       ar[i] = args[i].serialize();
     }
-
     return
     {
       id: id,
