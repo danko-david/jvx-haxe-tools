@@ -5,10 +5,10 @@ import haxe.EnumTools;
 class LogicalGroup implements ConditionInterface
 {
 	var lr:LogicalRelation;
-	var components:Array<LogicalGroup>;
+	var components:Array<ConditionInterface>;
 	var ac:AtomicCondition;
 
-	private function new(lr:LogicalRelation, components:Array<LogicalGroup>, ac:AtomicCondition)
+	private function new(lr:LogicalRelation, components:Array<ConditionInterface>, ac:AtomicCondition)
 	{
 		this.lr = lr;
 		this.components = components;
@@ -20,7 +20,7 @@ class LogicalGroup implements ConditionInterface
 		return new LogicalGroup(LogicalRelation.UNIT, null, ac);
 	}
 
-	public static function logicalGroup(lr:LogicalRelation, grp:Array<LogicalGroup>)
+	public static function logicalGroup(lr:LogicalRelation, grp:Array<ConditionInterface>):ConditionInterface
 	{
 		return new LogicalGroup(lr, grp, null);
 	}
@@ -35,7 +35,7 @@ class LogicalGroup implements ConditionInterface
 		return ac;
 	}
 
-	public function getLogicalGroups():Array<LogicalGroup>
+	public function getLogicalGroups():Array<ConditionInterface>
 	{
 		return components;
 	}
@@ -64,7 +64,7 @@ class LogicalGroup implements ConditionInterface
 	}
 
 
-  	public static function parse(obj:Dynamic):LogicalGroup
+  	public static function parse(obj:Dynamic):ConditionInterface
   	{
   		var relation:LogicalRelation = Type.createEnum(LogicalRelation, cast obj.r);
   		/*Map<String, Object>*/var atomicCondidition = obj.a;
@@ -76,7 +76,7 @@ class LogicalGroup implements ConditionInterface
   		}
   		else
   		{
-  			var lrs:Array<LogicalGroup> = new Array();
+  			var lrs:Array<ConditionInterface> = new Array();
   			for(i in 0...comp.length)
   			{
   				lrs[i] = parse(comp[i]);
