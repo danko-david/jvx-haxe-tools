@@ -11,6 +11,13 @@ class LogicalGroup implements ConditionInterface
 	private function new(lr:LogicalRelation, components:Array<ConditionInterface>, ac:AtomicCondition)
 	{
 		this.lr = lr;
+
+		#if php
+			if(!Std.is(components, Array))
+			{
+				components = cast(php.Lib.toHaxeArray(cast(components)));
+			}
+		#end
 		this.components = components;
 		this.ac = ac;
 	}
