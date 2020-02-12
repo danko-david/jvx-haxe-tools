@@ -71,47 +71,47 @@ class LogicalGroup implements ConditionInterface
 	}
 
 
-  	public static function parse(obj:Dynamic):ConditionInterface
-  	{
-  		var relation:LogicalRelation = Type.createEnum(LogicalRelation, cast obj.r);
-  		/*Map<String, Object>*/var atomicCondidition = obj.a;
-  		/*List<Map<String,Object>>*/ var comp:Array<Dynamic> = cast obj.c;
+	public static function parse(obj:Dynamic):ConditionInterface
+	{
+		var relation:LogicalRelation = Type.createEnum(LogicalRelation, cast obj.r);
+		/*Map<String, Object>*/var atomicCondidition = obj.a;
+		/*List<Map<String,Object>>*/ var comp:Array<Dynamic> = cast obj.c;
 
-  		if(null != atomicCondidition)
-  		{
-  			return atomicCondition(AtomicCondition.parse(atomicCondidition));
-  		}
-  		else
-  		{
-  			var lrs:Array<ConditionInterface> = new Array();
-  			for(i in 0...comp.length)
-  			{
-  				lrs[i] = parse(comp[i]);
-  			}
+		if(null != atomicCondidition)
+		{
+			return atomicCondition(AtomicCondition.parse(atomicCondidition));
+		}
+		else
+		{
+			var lrs:Array<ConditionInterface> = new Array();
+			for(i in 0...comp.length)
+			{
+				lrs[i] = parse(comp[i]);
+			}
 
-  			return logicalGroup(relation, lrs);
-  		}
-  	}
+			return logicalGroup(relation, lrs);
+		}
+	}
 
-  	public function serialize():Dynamic
-  	{
-  		var ret = {};
-			var a = null;
-			var c = null;
+	public function serialize():Dynamic
+	{
+		var ret = {};
+		var a = null;
+		var c = null;
 
-  		if(null != ac)
-  		{
-  			return {r: lr.getName(), a: ac.serialize()};
-  		}
-  		else
-  		{
-  			var lst:Array<Dynamic> = new Array();
-  			for(i in 0...components.length)
-  			{
-  				lst[i] = components[i].serialize();
-  			}
+		if(null != ac)
+		{
+			return {r: lr.getName(), a: ac.serialize()};
+		}
+		else
+		{
+			var lst:Array<Dynamic> = new Array();
+			for(i in 0...components.length)
+			{
+				lst[i] = components[i].serialize();
+			}
 
-  			return {r: lr.getName(), c: lst};
-  		}
-  	}
-  }
+			return {r: lr.getName(), c: lst};
+		}
+	}
+}

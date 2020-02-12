@@ -2,7 +2,7 @@ package jvx.query;
 
 enum LogicalRelation
 {
-  UNIT;
-  AND;
-  OR;
+	UNIT;
+	AND;
+	OR;
 }
