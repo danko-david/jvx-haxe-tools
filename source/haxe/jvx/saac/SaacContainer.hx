@@ -1,5 +1,7 @@
 package jvx.saac;
 
+import jvx.lang.LibFunction;
+
 /**
  * Port of eu.javaexperience.saac.client.SaacContainer
  */
@@ -16,19 +18,28 @@ class SaacContainer
 		args:Array<SaacContainer>
 	)
 	{
-			this.id = id;
-			this.content = content;
-			this.args = args;
+		this.id = id;
+		this.content = content;
+		this.args = args;
 	}
 
 	public static function restore(data:Dynamic):SaacContainer
 	{
-		var args = new Array();
-		for(i in 0...data.args.length)
+		//if it doesn't have id and content fields it likely be a json as string
+		//we try to parse. This might fail, but in this case the caller passed wrong argument.
+		if(!Reflect.hasField(data, "id") && !Reflect.hasField(data, "content"))
 		{
-			args[i] = restore(data.args[i]);
+			data = LibFunction.json_decode(data);
 		}
-
+		
+		var args = new Array();
+		if(Reflect.hasField(data, "args"))
+		{
+			for(i in 0...data.args.length)
+			{
+				args[i] = restore(data.args[i]);
+			}
+		}
 		return new SaacContainer(data.id, data.content, args);
 	}
 
@@ -84,9 +95,9 @@ class SaacContainer
 			args: ar
 		};
 	}
-
-/*	public function offer(api:SaacApi, index:Int)
+	
+	public function toString()
 	{
+		return "SaacFunction{ id: `"+id+"`, content: `"+content+"`, args: `"+args+"`}";
 	}
-*/
 }

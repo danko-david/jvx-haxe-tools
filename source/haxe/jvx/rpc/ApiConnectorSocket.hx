@@ -17,7 +17,7 @@ class ApiConnectorSocket implements ApiConnector
 
 #else
 
-import haxe.Json;
+import jvx.lang.LibFunction;
 import sys.net.Socket;
 import sys.net.Host;
 
@@ -33,10 +33,10 @@ class ApiConnectorSocket implements ApiConnector
 
 	public function txrx(data:Dynamic):Dynamic
 	{
-		socket.write(Json.stringify(data));
+		socket.write(LibFunction.json_encode(data));
 		socket.write("\n");
 		//TODO what if connection closed?
-		var ret = Json.parse(socket.input.readLine());
+		var ret = LibFunction.json_decode(socket.input.readLine());
 		if(Reflect.hasField(ret, "e"))
 		{
 			throw ret.e;

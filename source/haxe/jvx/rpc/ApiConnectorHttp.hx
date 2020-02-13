@@ -1,6 +1,6 @@
 package jvx.rpc;
 
-import haxe.Json;
+import jvx.lang.LibFunction;
 
 class ApiConnectorHttp implements ApiConnector
 {
@@ -14,7 +14,7 @@ class ApiConnectorHttp implements ApiConnector
 	public function txrx(data:Dynamic):Dynamic
 	{
 		var request = new haxe.Http(url);
-		request.setPostData(Json.stringify(data));
+		request.setPostData(LibFunction.json_encode(data));
 		var response = null;
 		request.onData = function (data)
 		{
@@ -26,7 +26,7 @@ class ApiConnectorHttp implements ApiConnector
 			throw "HttpApi access error at end point: "+url;
 		}
 		//TODO what if connection closed?
-		var ret = Json.parse(response);
+		var ret = LibFunction.json_decode(response);
 		if(Reflect.hasField(ret, "e"))
 		{
 			throw ret.e;

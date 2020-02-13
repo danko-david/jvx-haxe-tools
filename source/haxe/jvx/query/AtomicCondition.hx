@@ -1,6 +1,4 @@
 package jvx.query;
-import haxe.Json;
-
 
 class AtomicCondition implements ConditionInterface
 {

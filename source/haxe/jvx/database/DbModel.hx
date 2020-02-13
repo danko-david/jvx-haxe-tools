@@ -5,7 +5,7 @@ import jvx.api.DatabaseApi;
 import jvx.query.QueryTools;
 import jvx.query.Operator;
 
-import haxe.Json;
+import jvx.lang.LibFunction;
 
 class DbModel implements Serializable
 {
@@ -107,7 +107,7 @@ class DbModel implements Serializable
 			var ret = selectIdentical(db);
 			if(0 == ret.length)
 			{
-				throw "ensureExists failed: "+Json.stringify(validate)+" for object: "+Json.stringify(serializeState());
+				throw "ensureExists failed: "+LibFunction.json_encode(validate)+" for object: "+LibFunction.json_encode(serializeState());
 			}
 			restoreState(ret[0]);
 		}
