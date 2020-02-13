@@ -6,14 +6,15 @@ import jvx.query.QueryTools;
 import jvx.query.Operator;
 
 import jvx.lang.LibFunction;
+import haxe.Int64;
 
 class DbModel implements Serializable
 {
 	var id:Int;
 	var modelClass:String;
 
-	var lastModify:Int;
-	var createdOn:Int;
+	var lastModify:Int64;
+	var createdOn:Int64;
 
 	var modelExtraData:Dynamic;
 
